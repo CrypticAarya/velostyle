@@ -1,9 +1,12 @@
 import { useState } from "react";
 import "./App.css";
+import { useNavigate } from "react-router-dom";
+
 
 function App() {
   const [cart, setCart] = useState([]);
   const [showCart, setShowCart] = useState(false);
+  const navigate = useNavigate();
 
   const products = [
     { id: 1, name: "Zara T-Shirt", price: 1299, image: "https://via.placeholder.com/300x300.png?text=Zara+Tee" },
@@ -71,9 +74,12 @@ function App() {
               ))}
             </ul>
             <p className="font-bold text-lg">Total: ₹{total}</p>
-            <button className="mt-4 px-4 py-2 bg-black text-white rounded w-full hover:bg-gray-800">
-              Proceed to Checkout
-            </button>
+            <button
+  className="mt-4 px-4 py-2 bg-black text-white rounded w-full hover:bg-gray-800"
+  onClick={() => navigate("/checkout", { state: { cart } })}
+>
+  Proceed to Checkout
+</button>
           </>
         )}
       </div>
@@ -82,3 +88,4 @@ function App() {
 }
 
 export default App;
+
